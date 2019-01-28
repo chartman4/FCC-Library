@@ -36,6 +36,7 @@ module.exports = function (app) {
       ]).exec((err, books) => {
         if (err) return res.status(500).send(err)
         // send the list of all books
+
         res.status(200).send(books);
       });
       // console.log(aggregate);
@@ -67,8 +68,11 @@ module.exports = function (app) {
       console.log(bookid);
       //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
       Book.findById(bookid, function (err, docs) {
+        console.log("GET");
+        console.log(docs);
         if (err) res.status(500).send(err);
-        res.status(200).send(docs);
+        else if (docs == null) res.status(200).send("no book exists");
+        else res.status(200).send(docs);
       });
 
     })
