@@ -83,15 +83,14 @@ module.exports = function (app) {
 
     .post(function (req, res) {
       var bookid = req.params.id;
-      console.log(bookid);
       var comment = req.body.comment;
-      console.log(comment);
       //json res format same as .get
       Book.findByIdAndUpdate(bookid, { $push: { comments: comment } }, { new: true },
-        (err, doc) => {
-          console.log(doc);
-          if (err) res.status(500).send(err);
-          res.status(200).send(doc);
+        function (err, doc) {
+          if (err) {
+            res.status(500).send(err);
+          } else
+            res.status(200).send(doc);
         });
 
     })
