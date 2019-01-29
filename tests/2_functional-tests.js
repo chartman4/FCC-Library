@@ -51,7 +51,9 @@ suite('Functional Tests', function () {
             assert.equal(res.status, 200);
             assert.property(res.body, 'title', 'Books in array should contain title');
             assert.property(res.body, '_id', 'Books in array should contain _id');
+            assert.property(res.body, 'comments', 'Books in array should contain comments');
             assert.equal(res.body.title, 'Test POST /api/books with title');
+            assert.isArray(res.body.comments, 'comments should be an empty array');
             done();
           });
       });
