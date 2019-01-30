@@ -83,6 +83,8 @@ suite('Functional Tests', function () {
             assert.property(res.body[0], 'commentcount');
             assert.property(res.body[0], 'comments');
             assert.property(res.body[0], '_id');
+            assert.isArray(res.body[0].comments, 'comments should be an empty array');
+
             done();
           });
       });
@@ -118,6 +120,8 @@ suite('Functional Tests', function () {
             assert.property(res.body, '_id');
             assert.equal(res.body.title, 'Test POST /api/books with title');
             assert.equal(res.body._id, savedId);
+            assert.isArray(res.body.comments, 'comments should be an empty array');
+
           });
         done();
       });
@@ -140,6 +144,7 @@ suite('Functional Tests', function () {
             assert.property(res.body, 'title', 'Books in array should contain title');
             assert.property(res.body, '_id', 'Books in array should contain _id');
             assert.equal(res.body.title, 'Test POST /api/books with title');
+            assert.isArray(res.body.comments, 'comments should be an empty array');
             done();
           });
         // done();
